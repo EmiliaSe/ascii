@@ -16,6 +16,7 @@ def openImage():
    
 
 def makePixelMatrix(im):
+    im.thumbnail([200,200])
     w,h = im.size
     pixels = list(im.getdata())
     return [pixels[i:i+w] for i in range(0, w*h, w)]
@@ -68,14 +69,15 @@ def readOption():
 
 
 def main():
-   im = openImage()
-   pixels = makePixelMatrix(im)
-   o = readOption()
-   inten_matrix = makeBrightnessMatrix(pixels, o)
-   aMatrix = toASCII(inten_matrix)
-   printFormatASCII(aMatrix)
-   fileN = input("input file name to save ascii art. Warning, will override existing content of file if it already exists")
-   saveToFile(fileN, aMatrix)
+    im = openImage()
+    pixels = makePixelMatrix(im)
+    o = readOption()
+    inten_matrix = makeBrightnessMatrix(pixels, o)
+    aMatrix = toASCII(inten_matrix)
+    printFormatASCII(aMatrix)
+    fileN = input("input file name to save ascii art. Warning, will override existing content of file if it already exists: ")
+    if fileN !='':
+        saveToFile(fileN, aMatrix)
 
 
 
