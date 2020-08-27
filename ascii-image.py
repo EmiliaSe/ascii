@@ -57,7 +57,7 @@ def saveToFile(filename, aMatrix):
     f = open(filename, 'w')
     for row in aMatrix:
         for p in row:
-            f.write(p+p+p)
+            f.write(p+p) #currently only doubling chars
         f.write('\n')
     f.close()    
 
