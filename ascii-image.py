@@ -58,16 +58,24 @@ def saveToFile(filename, aMatrix):
         for p in row:
             f.write(p+p+p)
         f.write('\n')
-    f.close()        
+    f.close()    
+
+def readOption():
+    choice = input("Select the mapping type RBG to brightness desired:\n1 for average\n2 for lightness\n3 for luminosity ")
+    if choice not in {'1', '2', '3'}:
+        choice = input("Select a valid option (1,2,3): ")   
+    return choice        
 
 
 def main():
    im = openImage()
    pixels = makePixelMatrix(im)
-   inten_matrix = makeBrightnessMatrix(pixels, 3)
+   o = readOption()
+   inten_matrix = makeBrightnessMatrix(pixels, o)
    aMatrix = toASCII(inten_matrix)
    printFormatASCII(aMatrix)
-   saveToFile('test2.txt', aMatrix)
+   fileN = input("input file name to save ascii art. Warning, will override existing content of file if it already exists")
+   saveToFile(fileN, aMatrix)
 
 
 
